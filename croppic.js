@@ -1,9 +1,7 @@
 /*
  * CROPPIC
- * dependancy: jQuery
  * author: Ognjen "Zmaj Džedaj" Božičković and Mat Steinlin
- *
- *
+ * Updated Constantine A.
  */
 
 (function (window, document) {
@@ -50,6 +48,7 @@
             onBeforeRemoveCroppedImg: null,
             onAfterRemoveCroppedImg: null,
             onError: null,
+            onAfterInit: null,
 
         };
 
@@ -108,7 +107,6 @@
             }
 
             that.createImgUploadControls();
-
             if ($.isEmptyObject(that.options.loadPicture)) {
                 that.bindImgUploadControl();
             } else {
@@ -150,11 +148,10 @@
 
         },
         bindImgUploadControl: function () {
-
             var that = this;
 
             // CREATE UPLOAD IMG FORM
-            var formHtml = '<form class="' + that.id + '_imgUploadForm" style="visibility: hidden;">  <input type="file" name="img" id="' + that.id + '_imgUploadField">  </form>';
+            var formHtml = '<form class="' + that.id + '_imgUploadForm" style="visibility: hidden;">  <input type="file" name="img" id="' + that.id + '_imgUploadField" readonly>  </form>';
             that.outputDiv.append(formHtml);
             that.form = that.outputDiv.find('.' + that.id + '_imgUploadForm');
 
@@ -291,7 +288,7 @@
 
                 var img = $('<img src="' + that.options.loadPicture + '">');
                 that.obj.append(img);
-                img.load(function () {
+                img.on('load', function () {
                     that.imgInitW = that.imgW = this.width;
                     that.imgInitH = that.imgH = this.height;
                     that.initCropper();
@@ -321,7 +318,6 @@
 
             response = typeof data == 'object' ? data : jQuery.parseJSON(data);
 
-
             if (response.status == 'success') {
 
                 that.imgInitW = that.imgW = response.width;
@@ -340,7 +336,7 @@
 
                 that.obj.append(img);
 
-                img.load(function () {
+                img.on('load', function () {
                     that.initCropper();
                     that.hideLoader();
                     if (that.options.onAfterImgUpload) that.options.onAfterImgUpload.call(that);
@@ -395,6 +391,10 @@
             }
             that.initDrag();
             that.initialScaleImg();
+
+            if (typeof (that.options.onAfterInit) === typeof (Function)) {
+                that.options.onAfterInit();
+            }
         },
         createEyecandy: function () {
             var that = this;

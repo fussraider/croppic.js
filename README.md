@@ -1,7 +1,7 @@
 Croppic.js
 =======
 
-Croppic (https://github.com/sconsult/croppic) in npm-package format with fixes for jQuery 3+
+Croppic (https://github.com/sconsult/croppic) in npm-package format
 
 see full documentation at http://www.croppic.net/
 
