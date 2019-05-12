@@ -1,0 +1,25 @@
+{
+  "name": "croppic-js",
+  "version": "1.0.0",
+  "description": "Fixed Croppic.js in npm-package format. Fork of https://github.com/sconsult/croppic",
+  "main": "croppic.min.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fussraider/croppic.git"
+  },
+  "keywords": [
+    "croppic",
+    "croper",
+    "zoom",
+    "scale",
+    "rotate",
+    "image edit",
+    "front-end"
+  ],
+  "author": "Constantine A. <me@fussraider.ru> (https://github.com/fussraider)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fussraider/croppic/issues"
+  },
+  "homepage": "https://github.com/fussraider/croppic#readme"
+}
