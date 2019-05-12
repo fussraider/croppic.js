@@ -5,7 +5,7 @@
   "main": "croppic.min.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fussraider/croppic.git"
+    "url": "git+https://github.com/fussraider/croppic.js.git"
   },
   "keywords": [
     "croppic",
