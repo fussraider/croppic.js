@@ -3,6 +3,9 @@
  * author: Ognjen "Zmaj Džedaj" Božičković and Mat Steinlin
  * Updated Constantine A.
  */
+if(typeof $ == 'undefined') {
+    window.jQuery = window.$ = require('jquery');
+}
 
 (function (window, document) {
 
@@ -316,7 +319,7 @@
         afterUpload: function (data) {
             var that = this;
 
-            response = typeof data == 'object' ? data : jQuery.parseJSON(data);
+            response = typeof data == 'object' ? data : $.parseJSON(data);
 
             if (response.status == 'success') {
 
@@ -805,9 +808,9 @@
         afterCrop: function (data) {
             var that = this;
             try {
-                response = jQuery.parseJSON(data);
+                response = $.parseJSON(data);
             } catch (err) {
-                response = typeof data == 'object' ? data : jQuery.parseJSON(data);
+                response = typeof data == 'object' ? data : $.parseJSON(data);
             }
 
             if (response.status == 'success') {
@@ -901,7 +904,7 @@
 
             if (!that.isAjaxUploadSupported()) {
 
-                if (jQuery.isEmptyObject(that.iframeobj)) {
+                if ($.isEmptyObject(that.iframeobj)) {
                     var iframe = document.createElement("iframe");
                     iframe.setAttribute("id", that.id + "_upload_iframe");
                     iframe.setAttribute("name", that.id + "_upload_iframe");
@@ -948,7 +951,7 @@
 
                     var response = that.getIframeContentJSON(iframe);
 
-                    if (jQuery.isEmptyObject(that.modal)) {
+                    if ($.isEmptyObject(that.modal)) {
                         that.afterUpload(response);
                     }
                 }
@@ -986,7 +989,7 @@
                 if (innerHTML.slice(0, 5).toLowerCase() == "<pre>" && innerHTML.slice(-6).toLowerCase() == "</pre>") {
                     innerHTML = doc.body.firstChild.firstChild.nodeValue;
                 }
-                response = jQuery.parseJSON(innerHTML);
+                response = $.parseJSON(innerHTML);
             } catch (err) {
                 response = {success: false};
             }
