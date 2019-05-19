@@ -3,7 +3,7 @@
  * author: Ognjen "Zmaj Džedaj" Božičković and Mat Steinlin
  * Updated Constantine A.
  */
-if(typeof $ == 'undefined') {
+if (typeof $ == 'undefined') {
     window.jQuery = window.$ = require('jquery');
 }
 
@@ -52,6 +52,7 @@ if(typeof $ == 'undefined') {
             onAfterRemoveCroppedImg: null,
             onError: null,
             onAfterInit: null,
+            success: null
 
         };
 
@@ -764,7 +765,11 @@ if(typeof $ == 'undefined') {
                 });
                 XHR.onreadystatechange = function () {
                     if (XHR.readyState == 4 && XHR.status == 200) {
-                        that.afterCrop(XHR.responseText);
+
+                        if (typeof (that.options.success) === typeof (Function)) {
+                            that.options.success(data);
+                        } else
+                            that.afterCrop(XHR.responseText);
                     }
                 }
                 XHR.open('POST', that.options.cropUrl);
@@ -797,8 +802,10 @@ if(typeof $ == 'undefined') {
                     processData: false,
                     type: 'POST'
                 }).always(function (data) {
-
-                    that.afterCrop(data);
+                    if (typeof (that.options.success) === typeof (Function)) {
+                        that.options.success(data);
+                    } else
+                        that.afterCrop(data);
 
                 });
             }
