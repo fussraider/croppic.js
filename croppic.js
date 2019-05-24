@@ -724,7 +724,7 @@ if (typeof $ == 'undefined') {
             if (that.options.onImgZoom) that.options.onImgZoom.call(that);
 
         },
-        crop: function () {
+        crop: function (callback) {
             var that = this;
 
             if (that.options.onBeforeImgCrop) that.options.onBeforeImgCrop.call(that);
@@ -804,13 +804,14 @@ if (typeof $ == 'undefined') {
                 }).always(function (data) {
                     if (typeof (that.options.success) === typeof (Function)) {
                         that.options.success(data);
+
+                        if(typeof callback === typeof (Function))
+                            callback(data)
                     } else
                         that.afterCrop(data);
 
                 });
             }
-
-            //
         },
         afterCrop: function (data) {
             var that = this;
